@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: searched
+source: https://dev.groupme.com/docs/v3
+docs: https://dev.groupme.com/tutorials/oauth
+summary:
+  types: [apiKey, oauth2]
+  api_key_in: [header, query]
+  oauth2_flows: [implicit]
+notes: >-
+  GroupMe API v3 authenticates every request with a per-user access token. The
+  documentation directs developers to always send the token in the
+  X-Access-Token header and never in the URL query string, though the query
+  parameter token= is also historically accepted. Tokens are obtained either
+  from the developer's own access-token page (dev.groupme.com) or via the OAuth
+  flow for third-party applications. GroupMe's OAuth is a simplified
+  token-grant: an application redirects the user to the authorize endpoint and
+  receives an access token back on the callback (no scopes, no refresh token,
+  no OIDC discovery). Push (Faye/Bayeux) and bot callbacks reuse the same
+  access token, passed in the Bayeux ext field for push subscriptions.
+schemes:
+  - name: AccessTokenHeader
+    type: apiKey
+    in: header
+    parameter_name: X-Access-Token
+    recommended: true
+    sources: [https://dev.groupme.com/docs/v3]
+  - name: AccessTokenQuery
+    type: apiKey
+    in: query
+    parameter_name: token
+    recommended: false
+    note: Accepted but discouraged by the docs (never put the token in the URL).
+    sources: [https://dev.groupme.com/docs/v3]
+  - name: OAuth2
+    type: oauth2
+    flow: implicit
+    authorizationUrl: https://oauth.groupme.com/oauth/authorize
+    scopes: {}
+    note: >-
+      Token-grant OAuth. The application key is issued when registering an app
+      at dev.groupme.com; the user is redirected to the authorize URL and an
+      access_token is returned to the registered callback. No scope system.
+    sources: [https://dev.groupme.com/tutorials/oauth]
