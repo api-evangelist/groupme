@@ -1,0 +1,52 @@
+generated: '2026-07-19'
+method: searched
+source: https://dev.groupme.com/tutorials/push
+spec_type: Webhooks
+notes: >-
+  GroupMe exposes two real event surfaces: (1) a server-push realtime service
+  over the Bayeux/Faye protocol, and (2) bot callbacks — an HTTP webhook GroupMe
+  POSTs to whenever a message is posted in a group the bot belongs to. No
+  published AsyncAPI document exists; this captures the event/webhook catalog
+  faithfully from the docs.
+realtime_push:
+  endpoint: https://push.groupme.com/faye
+  protocol: Bayeux
+  transports: [websocket, long-polling]
+  handshake: POST to /faye with supported connectionTypes; server returns a clientId.
+  auth:
+    method: access_token
+    note: access_token and timestamp are supplied in the Bayeux message `ext` field; the token signature refreshes hourly.
+  channels:
+    - channel: /user/:user_id
+      description: New message events and notifications for a single user.
+      events:
+        - name: line.create
+          description: A new message was created in a group/conversation the user is in.
+        - name: direct_message.create
+          description: A new direct message was received.
+    - channel: /group/:group_id
+      description: Group-scoped realtime signals.
+      events:
+        - name: typing
+          description: A group member is composing a message.
+webhooks:
+  bot_callbacks:
+    description: >-
+      When a bot is created with a callback_url, GroupMe POSTs a JSON payload to
+      that URL for every message posted in the bot's group.
+    method: POST
+    content_type: application/json
+    configured_via: callback_url on POST /bots
+    payload_fields:
+      - attachments
+      - avatar_url
+      - created_at
+      - group_id
+      - id
+      - name
+      - sender_id
+      - sender_type
+      - source_guid
+      - system
+      - text
+      - user_id

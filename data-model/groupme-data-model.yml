@@ -1,0 +1,94 @@
+generated: '2026-07-19'
+method: searched
+source: https://dev.groupme.com/docs/v3
+notes: >-
+  Entity-relationship graph derived from the GroupMe API v3 object reference.
+  Ids are opaque numeric strings; message ids are large numeric strings unique
+  within a conversation.
+entities:
+  - name: User
+    id_field: id
+    description: A GroupMe account; the authenticated caller is retrieved via GET /users/me.
+    relationships:
+      - type: has_many
+        target: Membership
+        via: user_id
+      - type: has_many
+        target: Bot
+        via: user_id
+  - name: Group
+    id_field: id
+    description: A named group conversation.
+    relationships:
+      - type: has_many
+        target: Membership
+        via: group_id
+      - type: has_many
+        target: Message
+        via: group_id
+      - type: has_many
+        target: Bot
+        via: group_id
+  - name: Membership
+    id_field: id
+    description: A user's membership in a group; carries the per-group nickname and roles.
+    relationships:
+      - type: belongs_to
+        target: Group
+        via: group_id
+      - type: belongs_to
+        target: User
+        via: user_id
+  - name: Message
+    id_field: id
+    description: A message in a group or direct-message conversation; deduplicated by source_guid.
+    relationships:
+      - type: belongs_to
+        target: Group
+        via: group_id
+      - type: belongs_to
+        target: User
+        via: sender_id
+      - type: has_many
+        target: Attachment
+        via: attachments
+      - type: has_many
+        target: Like
+        via: favorited_by
+  - name: Chat
+    id_field: other_user.id
+    description: A direct-message conversation with another user.
+    relationships:
+      - type: has_many
+        target: Message
+        via: conversation_id
+  - name: Bot
+    id_field: bot_id
+    description: A programmatic poster attached to a group, optionally with a callback_url webhook.
+    relationships:
+      - type: belongs_to
+        target: Group
+        via: group_id
+      - type: belongs_to
+        target: User
+        via: user_id
+  - name: Like
+    id_field: null
+    description: A user's like/favorite of a message.
+    relationships:
+      - type: belongs_to
+        target: Message
+        via: message_id
+      - type: belongs_to
+        target: User
+        via: user_id
+  - name: Block
+    id_field: null
+    description: A block relationship between two users.
+    relationships:
+      - type: belongs_to
+        target: User
+        via: user_id
+  - name: Attachment
+    id_field: null
+    description: A message attachment (image, location, split, emoji, mentions, reply).

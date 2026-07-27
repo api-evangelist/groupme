@@ -1,0 +1,69 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: https://dev.groupme.com/docs/v3
+notes: >-
+  No official or community hosted MCP server for GroupMe was found. This is a
+  candidate tool surface derived from the documented GroupMe API v3 operations,
+  one tool per operation. Not published; provided as a build target.
+server:
+  name: groupme
+  transport: http
+tools:
+  - name: list_groups
+    description: List the authenticated user's active groups (paginated).
+    source_operation: GET /groups
+  - name: list_former_groups
+    description: List groups the user has left but can rejoin.
+    source_operation: GET /groups/former
+  - name: show_group
+    description: Retrieve details for a specific group.
+    source_operation: GET /groups/:id
+  - name: list_messages
+    description: Retrieve messages in a group (before_id/since_id pagination).
+    source_operation: GET /groups/:group_id/messages
+  - name: create_message
+    description: Send a message to a group (requires source_guid for dedup).
+    source_operation: POST /groups/:group_id/messages
+  - name: update_membership
+    description: Change your nickname in a group.
+    source_operation: POST /groups/:group_id/memberships/update
+  - name: remove_member
+    description: Remove a member from a group.
+    source_operation: POST /groups/:group_id/members/:membership_id/remove
+  - name: list_chats
+    description: List the user's direct-message conversations.
+    source_operation: GET /chats
+  - name: like_message
+    description: Like a message.
+    source_operation: POST /messages/:conversation_id/:message_id/like
+  - name: unlike_message
+    description: Unlike a message.
+    source_operation: POST /messages/:conversation_id/:message_id/unlike
+  - name: list_bots
+    description: List the caller's bots.
+    source_operation: GET /bots
+  - name: create_bot
+    description: Create a new bot.
+    source_operation: POST /bots
+  - name: post_bot_message
+    description: Post a message as a bot.
+    source_operation: POST /bots/post
+  - name: destroy_bot
+    description: Remove a bot.
+    source_operation: POST /bots/destroy
+  - name: get_me
+    description: Get the authenticated user's profile.
+    source_operation: GET /users/me
+  - name: update_user
+    description: Update account attributes.
+    source_operation: POST /users/update
+  - name: list_blocks
+    description: List the user's blocked contacts.
+    source_operation: GET /blocks
+  - name: create_block
+    description: Block a user.
+    source_operation: POST /blocks
+  - name: delete_block
+    description: Remove a block.
+    source_operation: POST /blocks/delete

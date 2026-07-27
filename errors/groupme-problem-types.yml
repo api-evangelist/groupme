@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: searched
+source: https://dev.groupme.com/docs/v3
+format: envelope
+notes: >-
+  GroupMe does not use RFC 9457 problem+json. Errors are returned in the standard
+  response envelope: `response` is null and `meta` carries the HTTP status `code`
+  and an `errors` array of human-readable strings. The catalog below lists the
+  HTTP status codes the v3 documentation surfaces; specific error strings are
+  contextual and returned in meta.errors.
+envelope:
+  field: meta.errors
+  code_field: meta.code
+  example: '{ "meta": { "code": 401, "errors": ["unauthorized"] }, "response": null }'
+problems:
+  - status: 304
+    title: Not Modified
+    meaning: The requested resource has not changed (conditional requests).
+  - status: 400
+    title: Bad Request
+    meaning: Malformed request or invalid parameters.
+  - status: 401
+    title: Unauthorized
+    meaning: Missing or invalid access token.
+  - status: 403
+    title: Forbidden
+    meaning: Authenticated but not permitted to perform the action.
+  - status: 404
+    title: Not Found
+    meaning: Resource does not exist or is not visible to the caller.
+  - status: 420
+    title: Enhance Your Calm
+    meaning: The caller is being rate limited / throttled.
+  - status: 500
+    title: Internal Server Error
+    meaning: Unexpected server error.
+  - status: 502
+    title: Bad Gateway
+    meaning: Upstream/gateway error.
+  - status: 503
+    title: Service Unavailable
+    meaning: Service temporarily unavailable.

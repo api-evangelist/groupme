@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: derived
+source: https://dev.groupme.com/docs/v3
+notes: >-
+  Standards conformance derived from the documented GroupMe API v3 surface and
+  auth model. GroupMe uses a simple access-token / token-grant OAuth model with
+  a custom response envelope; it does not implement OIDC, FAPI, SCIM, OData,
+  JSON:API, or RFC 9457.
+standards:
+  - id: oauth2
+    conforms: partial
+    evidence: >-
+      Token-grant OAuth authorize endpoint (oauth.groupme.com/oauth/authorize)
+      returning an access token; no scopes or refresh tokens.
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom {response, meta:{code, errors}} envelope, not application/problem+json.
+  - id: bayeux
+    conforms: true
+    evidence: Realtime push implemented over the Bayeux protocol at push.groupme.com/faye.
+  - id: webhooks
+    conforms: true
+    evidence: Bot callback_url receives HTTP POST callbacks for group messages.
+  - id: rest
+    conforms: true
+    evidence: Resource-oriented HTTP+JSON API under https://api.groupme.com/v3.
+  - id: pagination
+    conforms: true
+    evidence: page/per_page on collections; before_id/since_id/after_id cursoring on messages.
+  - id: idempotency
+    conforms: true
+    evidence: source_guid client-generated key de-duplicates message creation.
+  - id: fhir
+    conforms: false
+  - id: scim
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: fapi
+    conforms: false

@@ -1,8 +1,29 @@
 aid: groupme
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/groupme.png
 name: GroupMe
-description: 'GroupMe is a company surfaced as a portfolio company of thrive-capital and added to the
-  API Evangelist network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  GroupMe is a group messaging application, owned by Microsoft, that lets people
+  chat in named groups and direct conversations across iOS, Android, and the web,
+  including over SMS. For developers, GroupMe publishes the GroupMe API v3 — a
+  REST + JSON API at https://api.groupme.com/v3 authenticated with a per-user
+  access token in the X-Access-Token header. The API covers groups and former
+  groups, memberships and nicknames, group and direct messages with attachments,
+  likes, blocks, user profiles, and bots. A Bayeux/Faye push service delivers
+  realtime message and typing events, and bots receive HTTP webhook callbacks for
+  every group message. GroupMe was surfaced as a portfolio company of Thrive
+  Capital and enriched here from its public developer documentation.
 url: https://raw.githubusercontent.com/api-evangelist/groupme/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,11 +33,48 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Consumer
-apis: []
+- Messaging
+- Chat
+- Bots
+- Group Messaging
+- Communication
+- Social
+apis:
+- name: GroupMe API v3
+  description: >-
+    REST + JSON API for GroupMe groups, memberships, messages, chats, likes,
+    blocks, users, and bots, plus a Bayeux push service and bot webhook callbacks.
+  humanURL: https://dev.groupme.com/docs/v3
+  baseURL: https://api.groupme.com/v3
+  tags:
+  - Messaging
+  - Chat
+  - Bots
+  properties:
+  - type: Documentation
+    url: https://dev.groupme.com/docs/v3
+  - type: APIReference
+    url: https://dev.groupme.com/docs/v3
+  - type: Authentication
+    url: authentication/groupme-authentication.yml
+  - type: Conventions
+    url: conventions/groupme-conventions.yml
+  - type: Idempotency
+    url: conventions/groupme-conventions.yml
+  - type: ErrorCatalog
+    url: errors/groupme-problem-types.yml
+  - type: Webhooks
+    url: asyncapi/groupme-push-webhooks.yml
+  - type: DataModel
+    url: data-model/groupme-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/groupme-lifecycle.yml
+  - type: MCPServer
+    url: mcp/groupme-mcp.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +83,48 @@ maintainers:
 common:
 - type: Website
   url: https://groupme.com
+- type: DeveloperPortal
+  url: https://dev.groupme.com/
+- type: Documentation
+  url: https://dev.groupme.com/docs/v3
+- type: APIReference
+  url: https://dev.groupme.com/docs/v3
+- type: GettingStarted
+  url: https://dev.groupme.com/tutorials/oauth
+- type: TermsOfService
+  url: https://groupme.com/en-US/terms
+- type: PrivacyPolicy
+  url: https://groupme.com/privacy
+- type: SignUp
+  url: https://web.groupme.com
+- type: Authentication
+  url: authentication/groupme-authentication.yml
+- type: Conventions
+  url: conventions/groupme-conventions.yml
+- type: Idempotency
+  url: conventions/groupme-conventions.yml
+- type: ErrorCatalog
+  url: errors/groupme-problem-types.yml
+- type: Webhooks
+  url: asyncapi/groupme-push-webhooks.yml
+- type: DataModel
+  url: data-model/groupme-data-model.yml
+- type: Lifecycle
+  url: lifecycle/groupme-lifecycle.yml
+- type: Conformance
+  url: conformance/groupme-conformance.yml
+- type: Packages
+  url: packages/groupme-packages.yml
+- type: MCPServer
+  url: mcp/groupme-mcp.yml
+- type: WellKnown
+  url: well-known/groupme-well-known.yml
+- type: LLMsTxt
+  url: llms/groupme-llms.txt
+- type: DomainSecurity
+  url: security/groupme-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

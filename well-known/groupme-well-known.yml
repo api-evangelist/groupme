@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of GroupMe hosts
+notes: >-
+  No /.well-known/ discovery documents are published. api.groupme.com returns
+  500 for every /.well-known/ path (no handler); groupme.com redirects
+  /.well-known/security.txt to a 404 page; dev.groupme.com returns 404. No
+  security.txt, OpenID configuration, OAuth authorization-server metadata,
+  api-catalog, or ai-plugin.json was found. Absence is recorded as valid data.
+hosts:
+  - host: https://api.groupme.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 500
+      - path: /.well-known/openid-configuration
+        status: 500
+      - path: /.well-known/oauth-authorization-server
+        status: 500
+  - host: https://groupme.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 301
+        note: Redirects to https://groupme.com/404 (no security.txt).
+      - path: /.well-known/openid-configuration
+        status: 301
+        note: Redirects to https://groupme.com/404.
+  - host: https://dev.groupme.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404

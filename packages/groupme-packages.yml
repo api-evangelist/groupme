@@ -1,0 +1,41 @@
+generated: '2026-07-19'
+method: searched
+source: https://registry.npmjs.org / https://pypi.org / https://rubygems.org
+notes: >-
+  GroupMe does not publish a first-party / official SDK. The libraries below are
+  community-maintained clients discovered on the public registries and are all
+  marked official:false. No SDKs pointer is emitted in apis.yml because no
+  first-party client library exists.
+packages:
+  - language: javascript
+    registry: npm
+    name: node-groupme
+    url: https://www.npmjs.com/package/node-groupme
+    install: npm install node-groupme
+    official: false
+  - language: javascript
+    registry: npm
+    name: groupme
+    url: https://www.npmjs.com/package/groupme
+    install: npm install groupme
+    official: false
+  - language: javascript
+    registry: npm
+    name: groupme-api-types
+    url: https://www.npmjs.com/package/groupme-api-types
+    install: npm install groupme-api-types
+    official: false
+    note: TypeScript typings for the GroupMe API (community).
+  - language: python
+    registry: pypi
+    name: GroupyAPI
+    url: https://pypi.org/project/GroupyAPI/
+    install: pip install GroupyAPI
+    official: false
+    note: Imported as groupy; the most widely used community Python client.
+  - language: ruby
+    registry: rubygems
+    name: groupme
+    url: https://rubygems.org/gems/groupme
+    install: gem install groupme
+    official: false

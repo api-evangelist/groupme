@@ -1,0 +1,58 @@
+generated: '2026-07-19'
+method: searched
+source: https://dev.groupme.com/docs/v3
+docs: https://dev.groupme.com/docs/v3
+summary: >-
+  Cross-cutting request/response semantics for GroupMe API v3, captured from the
+  developer documentation.
+authentication:
+  style: access-token
+  header: X-Access-Token
+  see: authentication/groupme-authentication.yml
+envelope:
+  description: >-
+    Every response is a JSON envelope with a `response` payload and a `meta`
+    block carrying the HTTP status code and any error strings.
+  shape: '{ "response": <payload|null>, "meta": { "code": <int>, "errors": [<string>] } }'
+  see: errors/groupme-problem-types.yml
+idempotency:
+  supported: true
+  mechanism: source_guid
+  scope: message creation
+  description: >-
+    Message create (POST /groups/:group_id/messages and POST /bots/post)
+    requires a client-generated `source_guid`, a unique GUID the client assigns
+    to each outgoing message. GroupMe uses it to de-duplicate messages so a
+    retried request does not post a duplicate — the same source_guid yields the
+    same single message. This is GroupMe's idempotency key for writes.
+  key_field: source_guid
+  header: false
+pagination:
+  groups:
+    style: page-number
+    params: [page, per_page]
+    default_per_page: 10
+  messages:
+    style: cursor
+    params: [before_id, since_id, after_id, limit]
+    default_limit: 20
+    max_limit: 100
+    response_fields: [count, messages]
+  chats:
+    style: page-number
+    params: [page, per_page]
+versioning:
+  scheme: uri-path
+  current: v3
+  base_url: https://api.groupme.com/v3
+rate_limiting:
+  documented: false
+  note: GroupMe does not publish explicit rate-limit headers or quotas in the v3 docs.
+realtime:
+  push_endpoint: https://push.groupme.com/faye
+  protocol: Bayeux (Faye)
+  see: asyncapi/groupme-push-webhooks.yml
+attachments:
+  types: [image, location, split, emoji, mentions, reply]
+  image_service: https://image.groupme.com
+  note: Images must first be uploaded to the GroupMe image service, then referenced by URL in a message attachment.

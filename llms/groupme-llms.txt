@@ -1,0 +1,25 @@
+# GroupMe
+
+> GroupMe is a group messaging app (owned by Microsoft) with a public developer API — GroupMe API v3 — for reading and sending group and direct messages, managing groups and memberships, building bots, liking messages, and receiving realtime events over a Bayeux push service and bot webhook callbacks.
+
+## APIs
+
+- [GroupMe API v3 reference](https://dev.groupme.com/docs/v3): REST + JSON API at https://api.groupme.com/v3, authenticated with a per-user access token in the X-Access-Token header.
+
+## Docs
+
+- [Developer portal](https://dev.groupme.com/): API docs, tutorials, bot registration, and application registration.
+- [OAuth / authentication tutorial](https://dev.groupme.com/tutorials/oauth): Token-grant OAuth via https://oauth.groupme.com/oauth/authorize.
+- [Push / realtime tutorial](https://dev.groupme.com/tutorials/push): Bayeux/Faye push at https://push.groupme.com/faye (user and group channels).
+- [Image service](https://dev.groupme.com/docs/image_service): Upload and thumbnail images to attach to messages.
+
+## Artifacts
+
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/groupme/refs/heads/main/authentication/groupme-authentication.yml)
+- [API conventions](https://raw.githubusercontent.com/api-evangelist/groupme/refs/heads/main/conventions/groupme-conventions.yml)
+- [Error / envelope catalog](https://raw.githubusercontent.com/api-evangelist/groupme/refs/heads/main/errors/groupme-problem-types.yml)
+- [Push + webhooks event surface](https://raw.githubusercontent.com/api-evangelist/groupme/refs/heads/main/asyncapi/groupme-push-webhooks.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/groupme/refs/heads/main/data-model/groupme-data-model.yml)
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/groupme/refs/heads/main/lifecycle/groupme-lifecycle.yml)
+- [Packages (community SDKs)](https://raw.githubusercontent.com/api-evangelist/groupme/refs/heads/main/packages/groupme-packages.yml)
+- [Candidate MCP tool surface](https://raw.githubusercontent.com/api-evangelist/groupme/refs/heads/main/mcp/groupme-mcp.yml)

@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: searched
+source: https://dev.groupme.com/docs/v3
+versioning:
+  scheme: uri-path
+  current: v3
+  base_url: https://api.groupme.com/v3
+  docs: https://dev.groupme.com/docs/v3
+  note: >-
+    The API version is carried in the URL path (/v3). GroupMe has been on v3 for
+    the life of the public developer program.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No public deprecation policy or RFC 8594 Sunset/Deprecation header support is documented.
+sla:
+  url: null
+  note: No public SLA is published for the developer API.
+status_page:
+  url: null
+  note: >-
+    No GroupMe-specific public status page was found. GroupMe is a Microsoft
+    product; Microsoft does not surface a dedicated GroupMe API status page.
+deprecated_operations: []
