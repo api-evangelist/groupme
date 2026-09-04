@@ -93,8 +93,9 @@ apis:
     url: data-model/groupme-data-model.yml
   - type: Lifecycle
     url: lifecycle/groupme-lifecycle.yml
-  - type: MCPServer
+  - type: X-MCPServerCandidate
     url: mcp/groupme-mcp.yml
+    note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -135,8 +136,9 @@ common:
   url: conformance/groupme-conformance.yml
 - type: Packages
   url: packages/groupme-packages.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/groupme-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: WellKnown
   url: well-known/groupme-well-known.yml
 - type: LLMsTxt
